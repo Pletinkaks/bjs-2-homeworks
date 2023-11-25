@@ -1,9 +1,6 @@
-// 1 задача
+// Задача 1
 
 class PrintEditionItem {
-	
-	
-
 	constructor(name, releaseDate, pagesCount) {
 		this.name = name;
 		this.releaseDate = releaseDate;
@@ -13,11 +10,11 @@ class PrintEditionItem {
 	}
 
 	fix() {
-		this.state *=  1.5;
+		this.state *= 1.5;
 	}
 
 	set state(newState) {
-		if (newStatetate < 0) {
+		if (newState < 0) {
 			this._state = 0;
 		} else if (newState > 100) {
 			this._state = 100;
@@ -34,24 +31,25 @@ class PrintEditionItem {
 class Magazine extends PrintEditionItem {
 	constructor(name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
-	    this.type = "magazine";
+		this.type = 'magazine';
 	}
 }
 
 class Book extends PrintEditionItem {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
-		this.author = "author";
-	    this.type = "book";
+		this.author = author;
+		this.type = 'book';
 	}
 }
 
 class NovelBook extends Book {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(author, name, releaseDate, pagesCount);
-		this.type = "novel";
+		this.type = 'novel';
 	}
 }
+
 class FantasticBook extends Book {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(author, name, releaseDate, pagesCount);
@@ -91,10 +89,10 @@ picknick.fix();
 console.log(picknick.state);
 
 
-// 2 задача
+
+// Задача 2
 
 class Library {
-
 	constructor(name) {
 		this.name = name;
 		this.books = [];
@@ -126,6 +124,7 @@ class Library {
 		return null;
 	}
 }
+
 const library = new Library("Библиотека имени Ленина");
 
 library.addBook(
@@ -154,8 +153,8 @@ console.log("Количество книг до выдачи: " + library.books.
 library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length);
 
+// Задача 3
 
-// 3 задача
 
 class Student {
 	constructor(name) {
