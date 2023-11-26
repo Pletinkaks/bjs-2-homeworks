@@ -1,36 +1,72 @@
-"use strict"
+//Задача 1
+
+"use strict";
 
 function solveEquation(a, b, c) {
-	let arr = [];
-	let d = (b ** 2) - (4 * a * c);
-	if (d < 0) {
-		arr.push();
-	} else if (d == 0) {
-		let oneRoot = -b / (2 * a);
-		arr.push(oneRoot);
-	} else if (d > 0) {
-		let firstRoot = (-b + Math.sqrt(d)) / (2 * a);
-		let secondRoot = (-b - Math.sqrt(d)) / (2 * a);
-		arr.push(firstRoot, secondRoot);
+	const discriminant = b ** 2 - 4 * a * c;
+
+	if (discriminant < 0) {
+		return [];
+	} else if (discriminant === 0) {
+		const root = -b / (2 * a);
+		return [root];
+	} else {
+		const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+		const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+		return [root1, root2];
 	}
-	return arr;
 }
 
-function calculateTotalMortgage(percent, contribution, amount, date) {
-  let totalAmount;
-   if (isNaN(percent)) {
-   return totalAmount = `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`;
- } else if (isNaN(contribution)) {
-   return totalAmount = `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`;
- } else if (isNaN(amount)) {
-   return totalAmount = `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`;
- } 	
- let returnAmountBank = amount - contribution;	
- let date1 = new Date();	
- let diff = Date.parse(date) - Date.parse(date1);
- let creditTerm = Math.ceil(diff / 1000 / 60 / 60 / 24 / 30.5);	
- let P = percent / 12 / 100;
- let monthlyFee = returnAmountBank * (P + (P / (((1 + P) ** creditTerm) - 1)));
-     totalAmount = creditTerm * monthlyFee;				
-   return Number(totalAmount.toFixed(2));	
+const roots1 = solveEquation(1, 0, -9);
+console.log(roots1);
+
+const roots2 = solveEquation(1, -4, 4);
+console.log(roots2);
+
+const roots3 = solveEquation(2, 3, 1);
+console.log(roots3);
+
+//Задача 2
+
+"use strict";
+
+function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+	if (
+		typeof percent !== "number" ||
+		typeof contribution !== "number" ||
+		typeof amount !== "number" ||
+		typeof countMonths !== "number"
+	) {
+		return false;
+	}
+
+	const monthlyPercent = percent / 100 / 12;
+	const loanBody = amount - contribution;
+
+	const monthlyPayment = loanBody * (monthlyPercent + monthlyPercent / ((1 + monthlyPercent) ** countMonths - 1));
+
+	const totalPayment = parseFloat((monthlyPayment * countMonths).toFixed(2));
+
+	return totalPayment;
 }
+
+const payment1 = calculateTotalMortgage(10, 0, 50000, 12);
+console.log(payment1);
+
+const payment2 = calculateTotalMortgage(10, 1000, 50000, 12);
+console.log(payment2);
+
+const payment3 = calculateTotalMortgage(10, 0, 20000, 24);
+console.log(payment3);
+
+const payment4 = calculateTotalMortgage(10, 1000, 20000, 24);
+console.log(payment4);
+
+const payment5 = calculateTotalMortgage(10, 20000, 20000, 24);
+console.log(payment5);
+
+const payment6 = calculateTotalMortgage(10, 0, 10000, 36);
+console.log(payment6); 
+
+const payment7 = calculateTotalMortgage(15, 0, 10000, 36);
+console.log(payment7); 
